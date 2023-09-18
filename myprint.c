@@ -29,7 +29,7 @@ int _printf(const char *format, ...)
 			case 's':
 			{
 				int x = 0;
-				char *sValue  = va_arg(argus, char *) + '\0';
+				char *sValue  = va_arg(argus, char *);
 
 				while (sValue[x])
 				{
