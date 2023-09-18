@@ -15,18 +15,23 @@ int _printf(const char *format, ...)
 			case 'c':
 			{
 				iValue  = va_arg(argus, int);
-				putchar(iValue);
+				_putchar(iValue);
 				break;
 			}
 			case 's':
 			{
+				int x = 0;
 				char *sValue  = va_arg(argus, char *) + '\0';
-				puts(sValue);
+				while (sValue[x])
+				{
+					_putchar(sValue[x]);
+					x++;
+				}
 				break;
 			}
 			case '%':
 			{
-				putchar('%');
+				_putchar('%');
 				break;
 			}
 			default:
@@ -37,7 +42,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			putchar(format[i]);
+			_putchar(format[i]);
 
 		}
 		i++;
