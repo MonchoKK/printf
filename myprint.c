@@ -48,11 +48,5 @@ int _printf(const char *format, ...)
 		i++;
 	}
 	va_end(argus);
-	return (i);
-}
-int main(void)
-{
-	int x = 'c';
-	_printf("Hello, %s %c %%", "How are you", x);
-	return (0);
+	return (i - 1);
 }
