@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 			case 'c':
 			{
 				iValue  = va_arg(argus, int);
-				_putchar(iValue);
+				write(1, iValue, 1);
 				break;
 			}
 			case 's':
@@ -33,18 +33,18 @@ int _printf(const char *format, ...)
 
 				while (sValue[x])
 				{
-					_putchar(sValue[x]);
+					write(1, sValue[x], 1);
 					x++;
 				} break;
 			}
 			case '%':
 			{
-				_putchar('%');
+				write(1, '%', 1);
 				break;
 			}
 			}
 		} else
-			_putchar(format[i]);
+			write(1, format[i], 1);
 		i++;
 	}
 	va_end(argus);
