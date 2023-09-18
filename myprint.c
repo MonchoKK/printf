@@ -1,52 +1,42 @@
 #include "main.h"
+#include <stdio.h>
+#include <stdarg.h>
 
 /**
  * _printf - it's a printf like function
  * @format: the format that's gonna be printed
- *
+ * @main - function to be used
  * Return: 0 in success
  */
 
-int _printf(const char *format, ...)
+int _printf(const char *format, ...);
+
 {
-	int i = 0, iValue;
-	va_list argus;
+	va_list args;
 
-	va_start(argus, format);
-	while (format[i])
-	{
-		if (format[i] == '%')
+	va_start(args, format);
+
+	while (*format)
+		if (*format == '%')
 		{
-			i++;
-			switch (format[i])
-			{
-			case 'c':
-			{
-				iValue  = va_arg(argus, int);
-				_putchar(iValue);
-				break;
-			}
-			case 's':
-			{
-				int x = 0;
-				char *sValue  = va_arg(argus, char *) + '\0';
+		format++;
+		if (*format == 'c')
+		_putchar(va_arg(args, int));
+		else if (*format == 's')
+		printf("%s", va_arg(args, char*));
+		else if (*format == '%')
+		_putchar('%');
+		}
+		else
+		_putchar(*format);
+		format++;
 
-				while (sValue[x])
-				{
-					_putchar(sValue[x]);
-					x++;
-				} break;
-			}
-			case '%':
-			{
-				_putchar('%');
-				break;
-			}
-			}
-		} else
-			_putchar(format[i]);
-		i++;
-	}
-	va_end(argus);
-	return (i - 1);
+		va_end(args);
+}
+
+int main(void);
+
+{
+	printf("First ALX team project\n");
+	return (0);
 }
