@@ -9,7 +9,8 @@
 
 int _printf(const char *format, ...)
 {
-	int i = 0, iValue;
+	int i = 0;
+	char iValue, per = '%';
 	va_list argus;
 
 	va_start(argus, format);
@@ -23,7 +24,7 @@ int _printf(const char *format, ...)
 			case 'c':
 			{
 				iValue  = va_arg(argus, int);
-				write(1, iValue, 1);
+				write(1, &iValue, 1);
 				break;
 			}
 			case 's':
@@ -33,24 +34,18 @@ int _printf(const char *format, ...)
 
 				while (sValue[x])
 				{
-					write(1, sValue[x], 1);
+					write(1, &sValue[x], 1);
 					x++;
 				} break;
 			}
 			case '%':
-			{
-				write(1, '%', 1);
+				write(1, &per, 1);
 				break;
 			}
-			}
 		} else
-			write(1, format[i], 1);
+			write(1, &format[i], 1);
 		i++;
 	}
 	va_end(argus);
 	return (i);
-}
-int main(void)
-{
-	_printf("%s %% %c", "hi", 30);
 }
