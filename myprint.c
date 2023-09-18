@@ -1,9 +1,17 @@
 #include "main.h"
 
+/**
+ * _printf - it's a printf like function
+ * @format: the format that's gonna be printed
+ *
+ * Return: 0 in success
+ */
+
 int _printf(const char *format, ...)
 {
 	int i = 0, iValue;
 	va_list argus;
+
 	va_start(argus, format);
 	while (format[i])
 	{
@@ -22,38 +30,23 @@ int _printf(const char *format, ...)
 			{
 				int x = 0;
 				char *sValue  = va_arg(argus, char *) + '\0';
+
 				while (sValue[x])
 				{
 					_putchar(sValue[x]);
 					x++;
-				}
-				break;
+				} break;
 			}
 			case '%':
 			{
 				_putchar('%');
 				break;
 			}
-			default:
-			{
-				break;
 			}
-			}
-		}
-		else
-		{
+		} else
 			_putchar(format[i]);
-
-		}
 		i++;
 	}
-
 	va_end(argus);
-}
-
-int main()
-{
-	int x = 20;
-	_printf("hello, %s %c %%", "How are you", 'K');
 	return (0);
 }
