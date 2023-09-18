@@ -48,5 +48,5 @@ int _printf(const char *format, ...)
 		i++;
 	}
 	va_end(argus);
-	return (0);
+	return (i - 1);
 }
