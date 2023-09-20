@@ -17,7 +17,8 @@ int _printf(const char *format, ...)
 
 	while (*format)
 	{
-	if (*format == '%') {
+	if (*format == '%')
+	{
 	format++;
 
 	if (*format == 'c')
@@ -31,7 +32,9 @@ int _printf(const char *format, ...)
 
 	char *str = va_arg(args, char *);
 	fputs(str, stdout);
-	} else if (*format == '%') {
+	}
+	else if (*format == '%')
+	{
 
 	putchar('%');
 	}
