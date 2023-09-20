@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdio.h>
+#include <stdarg.h>
 
 /**
  * _printf - it's a printf like function
@@ -9,43 +11,58 @@
 
 int _printf(const char *format, ...)
 {
-	int i = 0;
-	char iValue, per = '%';
-	va_list argus;
 
-	va_start(argus, format);
-	while (format[i])
+	va_list args;
+	va_start(args, format);
+
+	while (*format)
 	{
-		if (format[i] == '%')
-		{
-			i++;
-			switch (format[i])
-			{
-			case 'c':
-			{
-				iValue  = va_arg(argus, int);
-				write(1, &iValue, 1);
-				break;
-			}
-			case 's':
-			{
-				int x = 0;
-				char *sValue  = va_arg(argus, char *);
+	if (*format == '%') {
+	format++;
 
-				while (sValue[x])
-				{
-					write(1, &sValue[x], 1);
-					x++;
-				} break;
-			}
-			case '%':
-				write(1, &per, 1);
-				break;
-			}
-		} else
-			write(1, &format[i], 1);
-		i++;
+	if (*format == 'c')
+	{
+
+	int character = va_arg(args, int);
+	putchar(character);
 	}
-	va_end(argus);
-	return (i);
+	else if (*format == 's')
+	{
+
+	char *str = va_arg(args, char *);
+	fputs(str, stdout);
+	} else if (*format == '%') {
+
+	putchar('%');
+	}
+	else
+	{
+
+	putchar('%');
+	putchar(*format);
+	}
+	}
+	else
+	{
+	putchar(*format);
+	}
+	format++;
+	}
+
+	va_end(args);
+	return (0);
 }
+
+int main(void)
+{
+	char myChar = 'A';
+	char *myString = "First ALX project, here we go!";
+
+	_printf("This is a character: %c\n", myChar);
+	_printf("This is a string: %s\n", myString);
+	_printf("A literal percent sign: %%\n");
+
+	return (0);
+}
+
+
